@@ -13,7 +13,7 @@ class BasicPage extends StatelessWidget {
           children: <Widget>[
             _createImage(),
             _createTittle(),
-            _createActions(),
+            _createActions(context),
             _createText(),
             _createText(),
             _createText(),
@@ -56,24 +56,27 @@ class BasicPage extends StatelessWidget {
     );
   }
 
-  Widget _createActions(){
+  Widget _createActions(BuildContext context){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _createAction(Icons.call, 'Call'),
-        _createAction(Icons.near_me, 'Route'),
-        _createAction(Icons.share, 'Share'),
+        _createAction(Icons.call, 'Call', context),
+        _createAction(Icons.near_me, 'Route', context),
+        _createAction(Icons.share, 'Share', context),
       ],
     );
   }
 
-  Widget _createAction(IconData icon, String text){
-    return Column(
-      children: <Widget>[
-        Icon(icon, color: Colors.blue, size: 40.0,),
-        SizedBox(height: 5.0,),
-        Text(text, style: TextStyle(fontSize: 15, color: Colors.blue),),
-      ],
+  Widget _createAction(IconData icon, String text, BuildContext context){
+    return GestureDetector(
+      onTap: ()=> Navigator.pushNamed(context, 'scroll'),
+      child: Column(
+        children: <Widget>[
+          Icon(icon, color: Colors.blue, size: 40.0,),
+          SizedBox(height: 5.0,),
+          Text(text, style: TextStyle(fontSize: 15, color: Colors.blue),),
+        ],
+      ),
     );
   }
 

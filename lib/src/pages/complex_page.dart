@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 
 class ComplexPage extends StatelessWidget {
 
+  BuildContext _context;
+
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -145,7 +148,7 @@ class ComplexPage extends StatelessWidget {
   }
 
   Widget _createButton(Color color, IconData icon, String text){
-    return Container(
+    final button = Container(
         height: 180.0,
         margin: EdgeInsets.all(15),
         decoration: BoxDecoration(
@@ -164,6 +167,11 @@ class ComplexPage extends StatelessWidget {
             Text(text, style: TextStyle(color: color),)
           ],
         ),
+      );
+
+      return GestureDetector(
+        onTap: ()=> Navigator.pushNamed(_context, 'basic'),
+        child: button,
       );
   }
 
